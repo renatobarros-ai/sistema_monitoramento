@@ -93,6 +93,33 @@ class Dashboard {
         document.getElementById('currentFlooding').textContent = data.flooding || '---';
         document.getElementById('currentRainLevel').textContent = `${data.rain_level || '---'} mm`;
         
+        // ✨ NOVA FUNCIONALIDADE: Aplica classes diretamente nos items individuais
+        const infoItems = document.querySelectorAll('.info-item');
+        
+        // Remove todas as classes anteriores de todos os items
+        infoItems.forEach(item => {
+            item.classList.remove('item-normal', 'item-atencao', 'item-perigo');
+        });
+        
+        // Determina qual classe aplicar baseada na classificação
+        let classToAdd = 'item-normal'; // Padrão
+        
+        switch (data.classification?.toLowerCase()) {
+            case 'atenção':
+                classToAdd = 'item-atencao';
+                break;
+            case 'perigo':
+                classToAdd = 'item-perigo';
+                break;
+            default:
+                classToAdd = 'item-normal';
+        }
+        
+        // Aplica a classe para TODOS os info-items
+        infoItems.forEach(item => {
+            item.classList.add(classToAdd);
+        });
+        
         // Atualiza mapa
         this.updateMap(data.classification);
         

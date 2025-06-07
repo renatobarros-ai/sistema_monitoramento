@@ -153,6 +153,23 @@ body {
     background: var(--cinza-claro);
     border-radius: var(--border-radius);
     border-left: 4px solid var(--azul-medio);
+    transition: background-color 0.3s ease, border-left-color 0.3s ease;
+}
+
+/* Estados condicionais aplicados DIRETAMENTE nos items individuais */
+.info-item.item-normal {
+    background: var(--cinza-claro) !important;
+    border-left-color: var(--azul-medio) !important;
+}
+
+.info-item.item-atencao {
+    background: rgba(255, 165, 0, 0.08) !important;
+    border-left-color: #FFA500 !important;
+}
+
+.info-item.item-perigo {
+    background: rgba(255, 68, 68, 0.08) !important;
+    border-left-color: #FF4444 !important;
 }
 
 .info-label {
