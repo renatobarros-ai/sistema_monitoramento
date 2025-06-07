@@ -1428,5 +1428,82 @@
     "timestamp": "2025-06-07T12:28:37.911569",
     "date": "07/06/2025",
     "time": "12:28:37"
+  },
+  {
+    "day": 1,
+    "rain_level": 21,
+    "image_used": "nenhuma",
+    "classification": "Normal",
+    "people_at_risk": "N\u00e3o",
+    "flooding": "N\u00e3o",
+    "timestamp": "2025-06-07T12:33:50.405499",
+    "date": "07/06/2025",
+    "time": "12:33:50"
+  },
+  {
+    "day": 2,
+    "rain_level": 25,
+    "image_used": "nenhuma",
+    "classification": "Normal",
+    "people_at_risk": "N\u00e3o",
+    "flooding": "N\u00e3o",
+    "timestamp": "2025-06-07T12:34:05.407896",
+    "date": "07/06/2025",
+    "time": "12:34:05"
+  },
+  {
+    "day": 3,
+    "rain_level": 83,
+    "image_used": "imagem_0186.jpg",
+    "classification": "Perigo",
+    "people_at_risk": "Sim",
+    "flooding": "Sim",
+    "timestamp": "2025-06-07T12:34:20.476537",
+    "date": "07/06/2025",
+    "time": "12:34:20"
+  },
+  {
+    "day": 4,
+    "rain_level": 19,
+    "image_used": "nenhuma",
+    "classification": "Normal",
+    "people_at_risk": "N\u00e3o",
+    "flooding": "N\u00e3o",
+    "timestamp": "2025-06-07T12:34:35.481529",
+    "date": "07/06/2025",
+    "time": "12:34:35"
+  },
+  {
+    "day": 5,
+    "rain_level": 13,
+    "image_used": "nenhuma",
+    "classification": "Normal",
+    "people_at_risk": "N\u00e3o",
+    "flooding": "N\u00e3o",
+    "timestamp": "2025-06-07T12:34:50.487197",
+    "date": "07/06/2025",
+    "time": "12:34:50"
+  },
+  {
+    "day": 6,
+    "rain_level": 100,
+    "image_used": "imagem_0221.jpg",
+    "classification": "Aten\u00e7\u00e3o",
+    "people_at_risk": "N\u00e3o",
+    "flooding": "Sim",
+    "timestamp": "2025-06-07T12:35:05.498940",
+    "date": "07/06/2025",
+    "time": "12:35:05"
+  },
+  {
+    "day": 7,
+    "rain_level": 19,
+    "image_used": "nenhuma",
+    "classification": "Normal",
+    "people_at_risk": "N\u00e3o",
+    "flooding": "N\u00e3o",
+    "timestamp": "2025-06-07T12:35:20.504088",
+    "date": "07/06/2025",
+    "time": "12:35:20"
   }
 ]

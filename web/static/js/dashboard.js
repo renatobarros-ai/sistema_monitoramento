@@ -93,7 +93,7 @@ class Dashboard {
         document.getElementById('currentFlooding').textContent = data.flooding || '---';
         document.getElementById('currentRainLevel').textContent = `${data.rain_level || '---'} mm`;
         
-        // ✨ NOVA FUNCIONALIDADE: Aplica classes diretamente nos items individuais
+        // ✨ Aplica classes nos info-items individuais
         const infoItems = document.querySelectorAll('.info-item');
         
         // Remove todas as classes anteriores de todos os items
@@ -101,24 +101,37 @@ class Dashboard {
             item.classList.remove('item-normal', 'item-atencao', 'item-perigo');
         });
         
+        // ✨ NOVA FUNCIONALIDADE: Aplica classe global no body para afetar contornos
+        const body = document.body;
+        
+        // Remove classes globais anteriores
+        body.classList.remove('state-normal', 'state-atencao', 'state-perigo');
+        
         // Determina qual classe aplicar baseada na classificação
-        let classToAdd = 'item-normal'; // Padrão
+        let classToAdd = 'item-normal';
+        let globalClass = 'state-normal';
         
         switch (data.classification?.toLowerCase()) {
             case 'atenção':
                 classToAdd = 'item-atencao';
+                globalClass = 'state-atencao';
                 break;
             case 'perigo':
                 classToAdd = 'item-perigo';
+                globalClass = 'state-perigo';
                 break;
             default:
                 classToAdd = 'item-normal';
+                globalClass = 'state-normal';
         }
         
         // Aplica a classe para TODOS os info-items
         infoItems.forEach(item => {
             item.classList.add(classToAdd);
         });
+        
+        // ✨ Aplica classe global no body para contornos
+        body.classList.add(globalClass);
         
         // Atualiza mapa
         this.updateMap(data.classification);

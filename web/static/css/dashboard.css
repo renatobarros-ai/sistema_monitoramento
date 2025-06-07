@@ -105,6 +105,7 @@ body {
     font-size: 1.3rem;
     border-bottom: 2px solid var(--verde-claro);
     padding-bottom: 0.5rem;
+    transition: border-bottom-color 0.3s ease;
 }
 
 /* Mapa */
@@ -119,6 +120,7 @@ body {
     height: auto;
     border-radius: var(--border-radius);
     border: 3px solid var(--verde-claro);
+    transition: border-color 0.3s ease;
 }
 
 .map-overlay {
@@ -158,17 +160,17 @@ body {
 
 /* Estados condicionais aplicados DIRETAMENTE nos items individuais */
 .info-item.item-normal {
-    background: rgba(120, 191, 67, 0.08) !important; /* Verde muito sutil */
-    border-left-color: var(--verde-vivo) !important;
+    background: rgba(120, 191, 67, 0.06) !important;
+    border-left-color: #78BF43 !important;
 }
 
 .info-item.item-atencao {
-    background: rgba(255, 165, 0, 0.08) !important; /* Amarelo sutil */
+    background: rgba(255, 165, 0, 0.08) !important;
     border-left-color: #FFA500 !important;
 }
 
 .info-item.item-perigo {
-    background: rgba(255, 68, 68, 0.08) !important; /* Vermelho sutil */
+    background: rgba(255, 68, 68, 0.08) !important;
     border-left-color: #FF4444 !important;
 }
 
@@ -196,6 +198,7 @@ body {
     border-radius: var(--border-radius);
     border: 2px solid var(--verde-claro);
     margin-bottom: 0.5rem;
+    transition: border-color 0.3s ease;
 }
 
 .image-name {
@@ -248,6 +251,45 @@ body {
     text-align: center;
     padding: 1rem 0;
     margin-top: 2rem;
+}
+
+/* Estados globais que afetam contornos e detalhes */
+body.state-normal .card h2 {
+    border-bottom-color: var(--verde-claro) !important;
+}
+
+body.state-normal .map-image {
+    border-color: var(--verde-claro) !important;
+}
+
+body.state-normal .inference-image {
+    border-color: var(--verde-claro) !important;
+}
+
+/* Estado Atenção - tudo fica amarelo/laranja */
+body.state-atencao .card h2 {
+    border-bottom-color: #FFA500 !important;
+}
+
+body.state-atencao .map-image {
+    border-color: #FFA500 !important;
+}
+
+body.state-atencao .inference-image {
+    border-color: #FFA500 !important;
+}
+
+/* Estado Perigo - tudo fica vermelho */
+body.state-perigo .card h2 {
+    border-bottom-color: #FF4444 !important;
+}
+
+body.state-perigo .map-image {
+    border-color: #FF4444 !important;
+}
+
+body.state-perigo .inference-image {
+    border-color: #FF4444 !important;
 }
 
 /* Responsive */
