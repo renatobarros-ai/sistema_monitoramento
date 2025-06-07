@@ -1,343 +1,275 @@
-# 🌧️ Sistema de Monitoramento Inteligente de Alagamentos
+# Sistema de Monitoramento Inteligente de Alagamentos
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
 [![PyTorch](https://img.shields.io/badge/PyTorch-1.9+-orange.svg)](https://pytorch.org)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Status](https://img.shields.io/badge/Status-Ativo-brightgreen.svg)]()
+[![Flask](https://img.shields.io/badge/Flask-2.0+-green.svg)](https://flask.palletsprojects.com)
+[![Status](https://img.shields.io/badge/Status-Produção-brightgreen.svg)]()
 
-## 📋 Sobre o Projeto
+## Visão Geral
 
-Sistema inteligente de monitoramento de alagamentos que utiliza **Redes Neurais Convolucionais (CNN)** para detectar automaticamente a presença de pessoas em áreas inundadas. O sistema foi desenvolvido como resposta às recentes enchentes no Rio Grande do Sul, visando otimizar o tempo de resposta de equipes de emergência e potencialmente salvar vidas.
+Sistema inteligente para monitoramento em tempo real de alagamentos urbanos usando **Redes Neurais Convolucionais (CNN)** para detectar pessoas em áreas inundadas. Desenvolvido para otimizar respostas de emergência e salvar vidas em situações de risco.
 
-### 🎯 Objetivo Principal
+### Funcionalidades Principais
 
-Detectar automaticamente pessoas em risco em áreas alagadas através da análise de imagens capturadas por drones ou câmeras urbanas, classificando as situações em três níveis:
+- **Detecção Automática de Alagamentos**: Sensor de chuva com threshold configurável
+- **Análise de Imagens com IA**: CNN especializada para detectar pessoas em enchentes
+- **Classificação Inteligente**: Sistema de 3 níveis de alerta (Normal/Atenção/Perigo)
+- **Dashboard Web em Tempo Real**: Interface moderna com WebSockets
+- **API REST Completa**: Endpoints para integração externa
+- **Persistência de Dados**: Histórico completo em JSON com timestamps
+- **Modo Console**: Interface textual para desenvolvimento/debug
 
-- 🟢 **Normal**: Sem alagamento
-- 🟡 **Atenção**: Alagamento sem pessoas em risco
-- 🔴 **Perigo**: Alagamento com pessoas em risco confirmadas
+## Instalação Rápida
 
-## 🚀 Funcionalidades
+```bash
+# Clone o repositório
+git clone <repository-url>
+cd sistema_monitoramento
 
-- ✅ **Simulação de sensor de chuva** (1-100mm)
-- ✅ **Detecção automática de alagamentos** (≥50mm)
-- ✅ **Análise de imagens com CNN treinada** (91.2% de acurácia)
-- ✅ **Classificação inteligente de risco**
-- ✅ **Interface de console em tempo real**
-- ✅ **Dashboard web** com atualizações via WebSocket
-- ✅ **Sistema de persistência** de dados em JSON
-- ✅ **API REST** para integração externa
-- ✅ **Sistema de fallback** (simulação quando modelo não disponível)
-- ✅ **Arquitetura modular e extensível**
+# Instale dependências
+pip install -r requirements.txt
 
-## 📚 Documentação Completa
+# Execute o sistema
+python main_web.py  # Modo web (recomendado)
+# ou
+python main.py      # Modo console
+```
 
-- **[🏗️ Arquitetura](docs/arquitetura.md)** - Estrutura e componentes do sistema
-- **[🧠 Modelo CNN](docs/modelo-cnn.md)** - Detalhes da rede neural e treinamento
-- **[🌐 API Reference](docs/api-reference.md)** - Documentação completa da API
-- **[⚙️ Configuração](docs/configuracao.md)** - Guia de configuração e personalização
-- **[📖 Guia de Instalação](docs/instalacao.md)** - Instalação detalhada e troubleshooting
+**Dashboard Web**: http://localhost:5000
 
-## 🧠 Modelo de IA
+## Arquitetura do Sistema
+
+```
+┌─────────────────┐    ┌──────────────┐    ┌─────────────┐
+│   Sensor Chuva  │───▶│  Detector    │───▶│ Analisador  │
+│   (1-100mm)     │    │ Alagamento   │    │ CNN         │
+└─────────────────┘    │  (≥50mm)     │    │ (64x64)     │
+                       └──────────────┘    └─────────────┘
+                                                   │
+┌─────────────────┐    ┌──────────────┐    ┌─────────────┐
+│  Dashboard Web  │◀───│  Storage     │◀───│ Classificador │
+│  (Tempo Real)   │    │  JSON        │    │ Emergência  │
+└─────────────────┘    └──────────────┘    └─────────────┘
+```
+
+### Componentes Principais
+
+| Componente | Descrição | Localização |
+|------------|-----------|-------------|
+| **Sistema Principal** | Lógica core de monitoramento | `core/system.py` |
+| **Modelo CNN** | Rede neural para detecção | `models/cnn_model.py` |
+| **API Web** | Servidor Flask + WebSocket | `api/app.py` |
+| **Dashboard** | Interface web responsiva | `web/templates/` |
+| **Storage** | Persistência em JSON | `database/storage.py` |
+| **Configurações** | Parâmetros do sistema | `config/settings.py` |
+
+## Modelo de Inteligência Artificial
 
 ### Arquitetura CNN
-- **2 Camadas Convolucionais** (32 → 64 filtros)
-- **Batch Normalization** para estabilidade
-- **Dropout 2D (25%)** para prevenção de overfitting
-- **2 Camadas Densas** (128 → 1 neurônio)
-- **Ativação Sigmoid** para classificação binária
+```python
+Entrada: RGB 64x64 pixels
+├── Conv2D(3→32) + BatchNorm + ReLU + MaxPool + Dropout(0.25)
+├── Conv2D(32→64) + BatchNorm + ReLU + MaxPool + Dropout(0.25)  
+├── Flatten + Linear(16384→128) + ReLU
+└── Linear(128→1) + Sigmoid
+Saída: Score (≤0.5 = pessoas detectadas)
+```
 
 ### Performance
-- 📊 **Acurácia de Teste**: 91.2%
-- 📊 **Acurácia de Treino**: 87.8%
-- 📊 **Overfitting**: Apenas 3.4%
-- 🖼️ **Resolução**: 64x64 pixels
-- ⚡ **Inferência**: ~50ms por imagem
+- **Acurácia**: 91.2% em dados de teste
+- **Dataset**: 400 imagens (alagamentos com/sem pessoas)
+- **Tempo de Inferência**: ~50ms por imagem
+- **Fallback**: Sistema de simulação quando modelo indisponível
 
-## 📦 Instalação
+## Sistema de Classificação
 
-### Pré-requisitos
-- Python 3.8 ou superior
-- pip (gerenciador de pacotes Python)
+| Nível | Condição | Ação Recomendada |
+|-------|----------|------------------|
+| 🟢 **Normal** | Sem alagamento | Monitoramento regular |
+| 🟡 **Atenção** | Alagamento sem pessoas | Preparar equipes |
+| 🔴 **Perigo** | Alagamento + pessoas detectadas | **Resposta imediata** |
 
-### 1. Clone o repositório
-```bash
-git clone https://github.com/seu-usuario/sistema-monitoramento-alagamentos.git
-cd sistema-monitoramento-alagamentos
-```
+## Modos de Execução
 
-### 2. Instale as dependências
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Estrutura de dados
-```bash
-# Crie a estrutura de pastas (se não existir)
-mkdir -p data/cnn/modelo
-mkdir -p data/cnn/imagens
-
-# Coloque seu modelo treinado em:
-# data/cnn/modelo/modelo_treinado.pth
-
-# Coloque imagens para análise em:
-# data/cnn/imagens/
-```
-
-## 🎮 Como Usar
-
-### Modo Console
-```bash
-python main.py
-```
-
-### Modo Web (Recomendado)
+### 1. Modo Web (Recomendado)
 ```bash
 python main_web.py
 ```
-Acesse: `http://localhost:5000`
+- Dashboard interativo em tempo real
+- WebSockets para atualizações instantâneas
+- API REST para integrações
+- Histórico gráfico e tabelas
+- Mapas dinâmicos por status
 
-### Exemplo de Saída
+### 2. Modo Console
+```bash
+python main.py
 ```
-🚀 SISTEMA DE MONITORAMENTO INICIADO
-⏹️  Pressione Ctrl+C para parar
+- Interface textual simples
+- Ideal para desenvolvimento/debug
+- Saída estruturada no terminal
+- Sem persistência web
 
-✅ Modelo carregado: data/cnn/modelo/modelo_treinado.pth
-   - Acurácia: 91.2%
-📷 320 imagens encontradas
+## API REST
 
-==================================================
-🌧️  Dia: 1
-📊 Classificação: Perigo
-👥 Pessoas em risco: Sim
-🌊 Alagamento: Sim
-☔ Nível de Chuva: 73 mm
-📷 Imagem: imagem_0156.jpg
-==================================================
-⏱️  Aguardando 15 segundos...
+### Endpoints Principais
+
+| Método | Endpoint | Descrição |
+|--------|----------|-----------|
+| `GET` | `/api/current-status` | Status atual do sistema |
+| `GET` | `/api/history` | Histórico completo |
+| `GET` | `/api/recent-records` | Últimos 15 registros |
+| `GET` | `/images/inference/<file>` | Imagens analisadas |
+
+### Exemplo de Resposta
+```json
+{
+  "day": 1,
+  "rain_level": 73,
+  "image_used": "imagem_0156.jpg",
+  "classification": "Perigo",
+  "people_at_risk": "Sim",
+  "flooding": "Sim",
+  "timestamp": "2025-06-07T13:47:34.301779"
+}
 ```
 
-## 📁 Estrutura do Projeto
+## Configuração
 
+### Parâmetros Principais (`config/settings.py`)
+
+```python
+RAIN_THRESHOLD = 50        # mm de chuva para alagamento
+DISPLAY_TIME = 15          # segundos entre processamentos
+IMAGE_SIZE = 64            # resolução para CNN
+SIMULATION_PRESENCE_PROB = 0.3  # probabilidade de simulação
+```
+
+### Gerenciamento de Histórico
+
+**Limpeza Automática** (novo na v2.0):
+```python
+# Sistema padrão - mantém histórico
+system = WebMonitoringSystem()
+
+# Limpa histórico a cada inicialização
+system = WebMonitoringSystem(clear_history=True)
+```
+
+## Estrutura de Dados
+
+### Registro de Monitoramento
+```json
+{
+  "day": 1,
+  "rain_level": 73,
+  "image_used": "imagem_0156.jpg", 
+  "classification": "Perigo",
+  "people_at_risk": "Sim",
+  "flooding": "Sim",
+  "timestamp": "2025-06-07T13:47:34.301779",
+  "date": "07/06/2025",
+  "time": "13:47:34"
+}
+```
+
+### Persistência
+- **Arquivo**: `data/history.json`
+- **Formato**: Array JSON com timestamps
+- **Operações**: Create, Read, Query (últimos N registros)
+- **Thread-Safe**: Operações atômicas
+
+## Dependências
+
+```txt
+torch>=1.9.0        # Framework de deep learning
+torchvision>=0.10.0 # Transformações de imagem
+Pillow>=8.0.0       # Processamento de imagem
+flask>=2.0.0        # Framework web
+flask-socketio>=5.0 # WebSocket support
+```
+
+## Documentação Técnica
+
+Para informações detalhadas, consulte:
+
+- **[Arquitetura Detalhada](docs/arquitetura.md)** - Componentes e design patterns
+- **[Modelo CNN](docs/modelo-cnn.md)** - Treinamento e performance da IA
+- **[API Reference](docs/api-reference.md)** - Endpoints e schemas completos
+- **[Configuração Avançada](docs/configuracao.md)** - Parâmetros e customizações
+- **[Guia de Instalação](docs/instalacao.md)** - Setup detalhado e troubleshooting
+
+## Desenvolvimento
+
+### Estrutura do Projeto
 ```
 sistema_monitoramento/
-├── 📄 main.py                    # Entrada console
-├── 📄 main_web.py               # Entrada web
-├── 📄 sistema.py                # Versão legada
-├── 📄 requirements.txt          # Dependências
-├── 📁 core/                     # Lógica principal
-│   ├── system.py               # Sistema principal
-│   ├── web_system.py           # Extensão web
-│   ├── sensor.py               # Sensor de chuva
-│   ├── image_analyzer.py       # Análise CNN
-│   └── classifier.py           # Classificador emergência
-├── 📁 models/                   # Modelos de IA
-│   └── cnn_model.py            # Arquitetura CNN
-├── 📁 api/                      # API Web
-│   └── app.py                  # Servidor Flask
-├── 📁 web/                      # Interface Web
-│   ├── templates/              # Templates HTML
-│   └── static/                 # CSS, JS, imagens
-├── 📁 database/                 # Persistência
-│   └── storage.py              # Gerenciador histórico
-├── 📁 data/                     # Dados
-│   ├── cnn/modelo/             # Modelos treinados
-│   ├── cnn/imagens/            # Dataset inferência
-│   └── history.json            # Histórico sistema
-├── 📁 config/                   # Configurações
-│   └── settings.py             # Constantes
-├── 📁 utils/                    # Utilitários
-│   └── file_utils.py           # Manipulação arquivos
-├── 📁 display/                  # Interface
-│   └── console_display.py      # Display console
-├── 📁 docs/                     # Documentação
-└── 📁 tests/                    # Testes unitários
+├── core/           # Lógica principal
+├── models/         # Modelos de IA
+├── api/           # Servidor web
+├── web/           # Frontend
+├── database/      # Persistência
+├── config/        # Configurações
+├── data/          # Dados e modelos
+├── docs/          # Documentação
+└── tests/         # Testes unitários
 ```
 
-## ⚙️ Configuração
+### Contribuição
 
-### Arquivo `config/settings.py`
+1. Fork o projeto
+2. Crie branch: `git checkout -b feature/nova-funcionalidade`
+3. Commit: `git commit -m 'Adiciona nova funcionalidade'`
+4. Push: `git push origin feature/nova-funcionalidade`
+5. Abra Pull Request
 
-```python
-# Limiar de chuva para alagamento (mm)
-RAIN_THRESHOLD = 50
+## Casos de Uso
 
-# Tempo de exibição de cada resultado (segundos)
-DISPLAY_TIME = 15
+### Aplicações Reais
+- **Gestão Municipal**: Monitoramento urbano automatizado
+- **Defesa Civil**: Sistema de alerta precoce
+- **IoT/Smart Cities**: Integração com sensores urbanos
+- **Pesquisa**: Análise de padrões de enchentes
 
-# Resolução das imagens para o modelo
-IMAGE_SIZE = 64
+### Integrações Possíveis
+- APIs meteorológicas
+- Sistemas de câmeras urbanas
+- Drones de monitoramento
+- Plataformas de alertas (SMS, email)
+- Sistemas GIS
 
-# Probabilidade de simular presença (quando usando simulação)
-SIMULATION_PRESENCE_PROB = 0.3
-```
+## Performance e Limitações
 
-## 🧪 Lógica de Funcionamento
+### Pontos Fortes
+- ✅ Arquitetura modular e extensível
+- ✅ IA especializada com boa acurácia
+- ✅ Interface web moderna e responsiva
+- ✅ Sistema robusto com fallbacks
+- ✅ API REST completa
 
-### Fluxo Principal
-1. **Sensor de Chuva**: Sorteia valor entre 1-100mm
-2. **Verificação de Alagamento**: Se ≥50mm → há alagamento
-3. **Análise de Imagem**: CNN analisa imagem aleatória
-4. **Classificação**:
-   - Sem alagamento → **Normal**
-   - Alagamento + sem pessoas → **Atenção** 
-   - Alagamento + com pessoas → **Perigo**
-5. **Exibição**: Mostra resultado por 15 segundos
-6. **Loop**: Incrementa dia e recomeça
+### Limitações Conhecidas
+- ⚠️ Dataset limitado (400 imagens)
+- ⚠️ Resolução 64x64 pode perder detalhes
+- ⚠️ Sensor simulado (não integrado a hardware real)
+- ⚠️ Processamento sequencial (uma imagem por vez)
 
-### Interpretação da CNN
-```python
-# Saída do modelo (sigmoid): 0.0 - 1.0
-if confidence <= 0.5:
-    resultado = "PRESENÇA CONFIRMADA"  # Classe 0: com_pessoas
-else:
-    resultado = "AUSENTE"              # Classe 1: sem_pessoas
-```
-
-## 🔧 Personalização
-
-### Adicionando Novo Sensor
-```python
-# Em core/sensor.py
-class WeatherAPISensor(RainSensor):
-    def get_rain_level(self):
-        # Implementar integração com API meteorológica
-        pass
-```
-
-### Mudando Interface
-```python
-# Em display/
-class WebDisplay(ConsoleDisplay):
-    def show_result(self, result):
-        # Implementar interface web
-        pass
-```
-
-### Configurando Novo Modelo
-```python
-# Em models/cnn_model.py
-class ResNetModel(nn.Module):
-    # Implementar arquitetura ResNet
-    pass
-```
-
-## 📊 Dados de Treinamento
-
-### Dataset Utilizado
-- **Total**: 400 imagens (320 treino + 80 teste)
-- **Classes**: 
-  - `com_pessoas`: 160 imagens (pessoas visíveis em alagamentos)
-  - `sem_pessoas`: 160 imagens (alagamentos sem pessoas)
-- **Resolução**: 64x64 pixels
-- **Formato**: JPG/JPEG
-
-### Data Augmentation Aplicado
-- **RandomResizedCrop**: Recortes aleatórios
-- **RandomHorizontalFlip**: Espelhamento (30%)
-- **RandomRotation**: Rotações (±10°)
-- **ColorJitter**: Variações de brilho/contraste
-
-## 🧪 Testes
-
-### Executar Testes Unitários
-```bash
-# Instalar pytest
-pip install pytest
-
-# Executar todos os testes
-python -m pytest tests/
-
-# Executar teste específico
-python -m pytest tests/test_sensor.py -v
-```
-
-### Exemplo de Teste
-```python
-# tests/test_sensor.py
-def test_rain_sensor():
-    sensor = RainSensor()
-    rain_level = sensor.get_rain_level()
-    assert 1 <= rain_level <= 100
-    
-    assert sensor.has_flooding(60) == True
-    assert sensor.has_flooding(30) == False
-```
-
-## 🤝 Contribuição
-
-### Como Contribuir
-1. **Fork** o projeto
-2. **Crie** uma branch para sua feature (`git checkout -b feature/nova-funcionalidade`)
-3. **Commit** suas mudanças (`git commit -m 'Adiciona nova funcionalidade'`)
-4. **Push** para a branch (`git push origin feature/nova-funcionalidade`)
-5. **Abra** um Pull Request
-
-### Padrões de Código
-- **PEP 8**: Seguir convenções Python
-- **Docstrings**: Documentar todas as funções
-- **Type Hints**: Usar anotações de tipo quando possível
-- **Testes**: Adicionar testes para novas funcionalidades
-
-## 🐛 Problemas Conhecidos
-
-- ⚠️ **Dataset pequeno**: 400 imagens podem não cobrir todos os cenários
-- ⚠️ **Resolução limitada**: 64x64 pode perder detalhes importantes
-- ⚠️ **Simulação de sensor**: Não integrado com sensores reais
-
-## 🌐 Dashboard Web
-
-### Funcionalidades
-- **Monitoramento em tempo real** via WebSockets
-- **Gráficos interativos** de histórico de chuva
-- **Mapas dinâmicos** que mudam conforme classificação
-- **Tabela de registros** com últimas detecções
-- **Visualização de imagens** analisadas pela CNN
-
-### Endpoints API
-- `GET /` - Dashboard principal
-- `GET /api/current-status` - Status atual do sistema
-- `GET /api/history` - Histórico completo
-- `GET /api/recent-records` - Últimos 15 registros
-- `GET /images/inference/<filename>` - Imagens analisadas
-
-## 🔮 Roadmap Futuro
+## Roadmap
 
 ### Próximas Versões
-- [ ] 📡 **Integração com APIs meteorológicas** reais
-- [ ] 📧 **Sistema de alertas** (email, SMS, WhatsApp)
-- [ ] 🗄️ **Banco de dados** relacional
-- [ ] 📱 **App móvel** para equipes de campo
-- [ ] 🛰️ **Integração com imagens de satélite**
-- [ ] 🧠 **IA explicável** (visualização de atenção)
-- [ ] ⚡ **Otimização para edge computing**
+- [ ] Integração com APIs meteorológicas reais
+- [ ] Sistema de notificações (email, SMS)
+- [ ] Banco de dados relacional
+- [ ] Processamento paralelo de múltiplas câmeras
+- [ ] App móvel para equipes de campo
+- [ ] Machine Learning Pipeline automatizado
 
-## 📄 Licença
+## Suporte
 
-Este projeto está licenciado sob a **MIT License** - veja o arquivo [LICENSE](LICENSE) para detalhes.
-
-## 👥 Autores
-
-- **Seu Nome** - *Desenvolvimento inicial* - [@seu-github](https://github.com/seu-usuario)
-
-## 🙏 Agradecimentos
-
-- **FIAP** - Instituição de ensino
-- **PyTorch Community** - Framework de deep learning
-- **Comunidade Open Source** - Inspiração e ferramentas
-
-## 📞 Contato
-
-- **Email**: seu.email@exemplo.com
-- **LinkedIn**: [seu-perfil](https://linkedin.com/in/seu-perfil)
-- **GitHub**: [@seu-usuario](https://github.com/seu-usuario)
+Para dúvidas, bugs ou sugestões:
+- **Issues**: Use o sistema de issues do GitHub
+- **Documentação**: Consulte a pasta `docs/`
+- **Exemplos**: Veja os arquivos de teste
 
 ---
 
-<div align="center">
-
-**🌧️ Desenvolvido com ❤️ para salvar vidas em situações de emergência 🌧️**
-
-*Se este projeto foi útil, considere dar uma ⭐ no repositório!*
-
-</div>
+**Desenvolvido com foco em salvar vidas em situações de emergência** 🌧️💙
