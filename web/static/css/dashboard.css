@@ -158,17 +158,17 @@ body {
 
 /* Estados condicionais aplicados DIRETAMENTE nos items individuais */
 .info-item.item-normal {
-    background: var(--cinza-claro) !important;
-    border-left-color: var(--azul-medio) !important;
+    background: rgba(120, 191, 67, 0.08) !important; /* Verde muito sutil */
+    border-left-color: var(--verde-vivo) !important;
 }
 
 .info-item.item-atencao {
-    background: rgba(255, 165, 0, 0.08) !important;
+    background: rgba(255, 165, 0, 0.08) !important; /* Amarelo sutil */
     border-left-color: #FFA500 !important;
 }
 
 .info-item.item-perigo {
-    background: rgba(255, 68, 68, 0.08) !important;
+    background: rgba(255, 68, 68, 0.08) !important; /* Vermelho sutil */
     border-left-color: #FF4444 !important;
 }
 
