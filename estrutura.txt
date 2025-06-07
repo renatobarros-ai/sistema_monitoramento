@@ -1,0 +1,719 @@
+.
+├── api
+│   ├── app.py
+│   └── __pycache__
+│       └── app.cpython-313.pyc
+├── config
+│   ├── __pycache__
+│   │   └── settings.cpython-313.pyc
+│   └── settings.py
+├── core
+│   ├── classifier.py
+│   ├── image_analyzer.py
+│   ├── __pycache__
+│   │   ├── classifier.cpython-313.pyc
+│   │   ├── image_analyzer.cpython-313.pyc
+│   │   ├── sensor.cpython-313.pyc
+│   │   ├── system.cpython-313.pyc
+│   │   └── web_system.cpython-313.pyc
+│   ├── sensor.py
+│   ├── system.py
+│   └── web_system.py
+├── data
+│   ├── cnn
+│   │   ├── imagens
+│   │   │   ├── imagem_0001.jpg
+│   │   │   ├── imagem_0002.jpg
+│   │   │   ├── imagem_0003.jpg
+│   │   │   ├── imagem_0004.jpg
+│   │   │   ├── imagem_0005.jpg
+│   │   │   ├── imagem_0006.jpg
+│   │   │   ├── imagem_0007.jpg
+│   │   │   ├── imagem_0008.jpg
+│   │   │   ├── imagem_0009.jpg
+│   │   │   ├── imagem_0010.jpg
+│   │   │   ├── imagem_0011.jpg
+│   │   │   ├── imagem_0012.jpg
+│   │   │   ├── imagem_0013.jpg
+│   │   │   ├── imagem_0014.jpg
+│   │   │   ├── imagem_0015.jpg
+│   │   │   ├── imagem_0016.jpg
+│   │   │   ├── imagem_0017.jpg
+│   │   │   ├── imagem_0018.jpg
+│   │   │   ├── imagem_0019.jpg
+│   │   │   ├── imagem_0020.jpg
+│   │   │   ├── imagem_0021.jpg
+│   │   │   ├── imagem_0022.jpg
+│   │   │   ├── imagem_0023.jpg
+│   │   │   ├── imagem_0024.jpg
+│   │   │   ├── imagem_0025.jpg
+│   │   │   ├── imagem_0026.jpg
+│   │   │   ├── imagem_0027.jpg
+│   │   │   ├── imagem_0028.jpg
+│   │   │   ├── imagem_0029.jpg
+│   │   │   ├── imagem_0030.jpg
+│   │   │   ├── imagem_0031.jpg
+│   │   │   ├── imagem_0032.jpg
+│   │   │   ├── imagem_0033.jpg
+│   │   │   ├── imagem_0034.jpg
+│   │   │   ├── imagem_0035.jpg
+│   │   │   ├── imagem_0036.jpg
+│   │   │   ├── imagem_0037.jpg
+│   │   │   ├── imagem_0038.jpg
+│   │   │   ├── imagem_0039.jpg
+│   │   │   ├── imagem_0040.jpg
+│   │   │   ├── imagem_0041.jpg
+│   │   │   ├── imagem_0042.jpg
+│   │   │   ├── imagem_0043.jpg
+│   │   │   ├── imagem_0044.jpg
+│   │   │   ├── imagem_0045.jpg
+│   │   │   ├── imagem_0046.jpg
+│   │   │   ├── imagem_0047.jpg
+│   │   │   ├── imagem_0048.jpg
+│   │   │   ├── imagem_0049.jpg
+│   │   │   ├── imagem_0050.jpg
+│   │   │   ├── imagem_0051.jpg
+│   │   │   ├── imagem_0052.jpg
+│   │   │   ├── imagem_0053.jpg
+│   │   │   ├── imagem_0054.jpg
+│   │   │   ├── imagem_0055.jpg
+│   │   │   ├── imagem_0056.jpg
+│   │   │   ├── imagem_0057.jpg
+│   │   │   ├── imagem_0058.jpg
+│   │   │   ├── imagem_0059.jpg
+│   │   │   ├── imagem_0060.jpg
+│   │   │   ├── imagem_0061.jpg
+│   │   │   ├── imagem_0062.jpg
+│   │   │   ├── imagem_0063.jpg
+│   │   │   ├── imagem_0064.jpg
+│   │   │   ├── imagem_0065.jpg
+│   │   │   ├── imagem_0066.jpg
+│   │   │   ├── imagem_0067.jpg
+│   │   │   ├── imagem_0068.jpg
+│   │   │   ├── imagem_0069.jpg
+│   │   │   ├── imagem_0070.jpg
+│   │   │   ├── imagem_0071.jpg
+│   │   │   ├── imagem_0072.jpg
+│   │   │   ├── imagem_0073.jpg
+│   │   │   ├── imagem_0074.jpg
+│   │   │   ├── imagem_0075.jpg
+│   │   │   ├── imagem_0076.jpg
+│   │   │   ├── imagem_0077.jpg
+│   │   │   ├── imagem_0078.jpg
+│   │   │   ├── imagem_0079.jpg
+│   │   │   ├── imagem_0080.jpg
+│   │   │   ├── imagem_0081.jpg
+│   │   │   ├── imagem_0082.jpg
+│   │   │   ├── imagem_0083.jpg
+│   │   │   ├── imagem_0084.jpg
+│   │   │   ├── imagem_0085.jpg
+│   │   │   ├── imagem_0086.jpg
+│   │   │   ├── imagem_0087.jpg
+│   │   │   ├── imagem_0088.jpg
+│   │   │   ├── imagem_0089.jpg
+│   │   │   ├── imagem_0090.jpg
+│   │   │   ├── imagem_0091.jpg
+│   │   │   ├── imagem_0092.jpg
+│   │   │   ├── imagem_0093.jpg
+│   │   │   ├── imagem_0094.jpg
+│   │   │   ├── imagem_0095.jpg
+│   │   │   ├── imagem_0096.jpg
+│   │   │   ├── imagem_0097.jpg
+│   │   │   ├── imagem_0098.jpg
+│   │   │   ├── imagem_0099.jpg
+│   │   │   ├── imagem_0100.jpg
+│   │   │   ├── imagem_0101.jpg
+│   │   │   ├── imagem_0102.jpg
+│   │   │   ├── imagem_0103.jpg
+│   │   │   ├── imagem_0104.jpg
+│   │   │   ├── imagem_0105.jpg
+│   │   │   ├── imagem_0106.jpg
+│   │   │   ├── imagem_0107.jpg
+│   │   │   ├── imagem_0108.jpg
+│   │   │   ├── imagem_0109.jpg
+│   │   │   ├── imagem_0110.jpg
+│   │   │   ├── imagem_0111.jpg
+│   │   │   ├── imagem_0112.jpg
+│   │   │   ├── imagem_0113.jpg
+│   │   │   ├── imagem_0114.jpg
+│   │   │   ├── imagem_0115.jpg
+│   │   │   ├── imagem_0116.jpg
+│   │   │   ├── imagem_0117.jpg
+│   │   │   ├── imagem_0118.jpg
+│   │   │   ├── imagem_0119.jpg
+│   │   │   ├── imagem_0120.jpg
+│   │   │   ├── imagem_0121.jpg
+│   │   │   ├── imagem_0122.jpg
+│   │   │   ├── imagem_0123.jpg
+│   │   │   ├── imagem_0124.jpg
+│   │   │   ├── imagem_0125.jpg
+│   │   │   ├── imagem_0126.jpg
+│   │   │   ├── imagem_0127.jpg
+│   │   │   ├── imagem_0128.jpg
+│   │   │   ├── imagem_0129.jpg
+│   │   │   ├── imagem_0130.jpg
+│   │   │   ├── imagem_0131.jpg
+│   │   │   ├── imagem_0132.jpg
+│   │   │   ├── imagem_0133.jpg
+│   │   │   ├── imagem_0134.jpg
+│   │   │   ├── imagem_0135.jpg
+│   │   │   ├── imagem_0136.jpg
+│   │   │   ├── imagem_0137.jpg
+│   │   │   ├── imagem_0138.jpg
+│   │   │   ├── imagem_0139.jpg
+│   │   │   ├── imagem_0140.jpg
+│   │   │   ├── imagem_0141.jpg
+│   │   │   ├── imagem_0142.jpg
+│   │   │   ├── imagem_0143.jpg
+│   │   │   ├── imagem_0144.jpg
+│   │   │   ├── imagem_0145.jpg
+│   │   │   ├── imagem_0146.jpg
+│   │   │   ├── imagem_0147.jpg
+│   │   │   ├── imagem_0148.jpg
+│   │   │   ├── imagem_0149.jpg
+│   │   │   ├── imagem_0150.jpg
+│   │   │   ├── imagem_0151.jpg
+│   │   │   ├── imagem_0152.jpg
+│   │   │   ├── imagem_0153.jpg
+│   │   │   ├── imagem_0154.jpg
+│   │   │   ├── imagem_0155.jpg
+│   │   │   ├── imagem_0156.jpg
+│   │   │   ├── imagem_0157.jpg
+│   │   │   ├── imagem_0158.jpg
+│   │   │   ├── imagem_0159.jpg
+│   │   │   ├── imagem_0160.jpg
+│   │   │   ├── imagem_0161.jpg
+│   │   │   ├── imagem_0162.jpg
+│   │   │   ├── imagem_0163.jpg
+│   │   │   ├── imagem_0164.jpg
+│   │   │   ├── imagem_0165.jpg
+│   │   │   ├── imagem_0166.jpg
+│   │   │   ├── imagem_0167.jpg
+│   │   │   ├── imagem_0168.jpg
+│   │   │   ├── imagem_0169.jpg
+│   │   │   ├── imagem_0170.jpg
+│   │   │   ├── imagem_0171.jpg
+│   │   │   ├── imagem_0172.jpg
+│   │   │   ├── imagem_0173.jpg
+│   │   │   ├── imagem_0174.jpg
+│   │   │   ├── imagem_0175.jpg
+│   │   │   ├── imagem_0176.jpg
+│   │   │   ├── imagem_0177.jpg
+│   │   │   ├── imagem_0178.jpg
+│   │   │   ├── imagem_0179.jpg
+│   │   │   ├── imagem_0180.jpg
+│   │   │   ├── imagem_0181.jpg
+│   │   │   ├── imagem_0182.jpg
+│   │   │   ├── imagem_0183.jpg
+│   │   │   ├── imagem_0184.jpg
+│   │   │   ├── imagem_0185.jpg
+│   │   │   ├── imagem_0186.jpg
+│   │   │   ├── imagem_0187.jpg
+│   │   │   ├── imagem_0188.jpg
+│   │   │   ├── imagem_0189.jpg
+│   │   │   ├── imagem_0190.jpg
+│   │   │   ├── imagem_0191.jpg
+│   │   │   ├── imagem_0192.jpg
+│   │   │   ├── imagem_0193.jpg
+│   │   │   ├── imagem_0194.jpg
+│   │   │   ├── imagem_0195.jpg
+│   │   │   ├── imagem_0196.jpg
+│   │   │   ├── imagem_0197.jpg
+│   │   │   ├── imagem_0198.jpg
+│   │   │   ├── imagem_0199.jpg
+│   │   │   ├── imagem_0200.jpg
+│   │   │   ├── imagem_0201.jpg
+│   │   │   ├── imagem_0202.jpg
+│   │   │   ├── imagem_0203.jpg
+│   │   │   ├── imagem_0204.jpg
+│   │   │   ├── imagem_0205.jpg
+│   │   │   ├── imagem_0206.jpg
+│   │   │   ├── imagem_0207.jpg
+│   │   │   ├── imagem_0208.jpg
+│   │   │   ├── imagem_0209.jpg
+│   │   │   ├── imagem_0210.jpg
+│   │   │   ├── imagem_0211.jpg
+│   │   │   ├── imagem_0212.jpg
+│   │   │   ├── imagem_0213.jpg
+│   │   │   ├── imagem_0214.jpg
+│   │   │   ├── imagem_0215.jpg
+│   │   │   ├── imagem_0216.jpg
+│   │   │   ├── imagem_0217.jpg
+│   │   │   ├── imagem_0218.jpg
+│   │   │   ├── imagem_0219.jpg
+│   │   │   ├── imagem_0220.jpg
+│   │   │   ├── imagem_0221.jpg
+│   │   │   ├── imagem_0222.jpg
+│   │   │   ├── imagem_0223.jpg
+│   │   │   ├── imagem_0224.jpg
+│   │   │   ├── imagem_0225.jpg
+│   │   │   ├── imagem_0226.jpg
+│   │   │   ├── imagem_0227.jpg
+│   │   │   ├── imagem_0228.jpg
+│   │   │   ├── imagem_0229.jpg
+│   │   │   ├── imagem_0230.jpg
+│   │   │   ├── imagem_0231.jpg
+│   │   │   ├── imagem_0232.jpg
+│   │   │   ├── imagem_0233.jpg
+│   │   │   ├── imagem_0234.jpg
+│   │   │   ├── imagem_0235.jpg
+│   │   │   ├── imagem_0236.jpg
+│   │   │   ├── imagem_0237.jpg
+│   │   │   ├── imagem_0238.jpg
+│   │   │   ├── imagem_0239.jpg
+│   │   │   ├── imagem_0240.jpg
+│   │   │   ├── imagem_0241.jpg
+│   │   │   ├── imagem_0242.jpg
+│   │   │   ├── imagem_0243.jpeg
+│   │   │   ├── imagem_0244.jpeg
+│   │   │   ├── imagem_0245.jpeg
+│   │   │   ├── imagem_0246.jpeg
+│   │   │   ├── imagem_0247.jpeg
+│   │   │   ├── imagem_0248.jpeg
+│   │   │   ├── imagem_0249.jpeg
+│   │   │   ├── imagem_0250.jpeg
+│   │   │   ├── imagem_0251.jpeg
+│   │   │   ├── imagem_0252.jpeg
+│   │   │   ├── imagem_0253.jpeg
+│   │   │   ├── imagem_0254.jpeg
+│   │   │   ├── imagem_0255.jpeg
+│   │   │   ├── imagem_0256.jpeg
+│   │   │   ├── imagem_0257.jpeg
+│   │   │   ├── imagem_0258.jpeg
+│   │   │   ├── imagem_0259.jpeg
+│   │   │   ├── imagem_0260.jpeg
+│   │   │   ├── imagem_0261.jpeg
+│   │   │   ├── imagem_0262.jpeg
+│   │   │   ├── imagem_0263.jpeg
+│   │   │   ├── imagem_0264.jpeg
+│   │   │   ├── imagem_0265.jpeg
+│   │   │   ├── imagem_0266.jpeg
+│   │   │   ├── imagem_0267.jpeg
+│   │   │   ├── imagem_0268.jpeg
+│   │   │   ├── imagem_0269.jpeg
+│   │   │   ├── imagem_0270.jpeg
+│   │   │   ├── imagem_0271.jpeg
+│   │   │   ├── imagem_0272.jpeg
+│   │   │   ├── imagem_0273.jpeg
+│   │   │   ├── imagem_0274.jpeg
+│   │   │   ├── imagem_0275.jpeg
+│   │   │   ├── imagem_0276.jpeg
+│   │   │   ├── imagem_0277.jpeg
+│   │   │   ├── imagem_0278.jpeg
+│   │   │   ├── imagem_0279.jpeg
+│   │   │   ├── imagem_0280.jpeg
+│   │   │   ├── imagem_0281.jpeg
+│   │   │   ├── imagem_0282.jpeg
+│   │   │   ├── imagem_0283.jpeg
+│   │   │   ├── imagem_0284.jpeg
+│   │   │   ├── imagem_0285.jpeg
+│   │   │   ├── imagem_0286.jpeg
+│   │   │   ├── imagem_0287.jpeg
+│   │   │   ├── imagem_0288.jpeg
+│   │   │   ├── imagem_0289.jpeg
+│   │   │   ├── imagem_0290.jpeg
+│   │   │   ├── imagem_0291.jpeg
+│   │   │   ├── imagem_0292.jpeg
+│   │   │   ├── imagem_0293.jpeg
+│   │   │   ├── imagem_0294.jpeg
+│   │   │   ├── imagem_0295.jpeg
+│   │   │   ├── imagem_0296.jpeg
+│   │   │   ├── imagem_0297.jpeg
+│   │   │   ├── imagem_0298.jpeg
+│   │   │   ├── imagem_0299.jpeg
+│   │   │   ├── imagem_0300.jpeg
+│   │   │   ├── imagem_0301.jpeg
+│   │   │   ├── imagem_0302.jpeg
+│   │   │   ├── imagem_0303.jpeg
+│   │   │   ├── imagem_0304.jpeg
+│   │   │   ├── imagem_0305.jpeg
+│   │   │   ├── imagem_0306.jpeg
+│   │   │   ├── imagem_0307.jpeg
+│   │   │   ├── imagem_0308.jpeg
+│   │   │   ├── imagem_0309.jpeg
+│   │   │   ├── imagem_0310.jpeg
+│   │   │   ├── imagem_0311.jpeg
+│   │   │   ├── imagem_0312.jpeg
+│   │   │   ├── imagem_0313.jpeg
+│   │   │   ├── imagem_0314.jpeg
+│   │   │   ├── imagem_0315.jpeg
+│   │   │   ├── imagem_0316.jpeg
+│   │   │   ├── imagem_0317.jpeg
+│   │   │   ├── imagem_0318.jpeg
+│   │   │   ├── imagem_0319.jpeg
+│   │   │   └── imagem_0320.jpeg
+│   │   └── modelo
+│   │       └── modelo_treinado.pth
+│   └── history.json
+├── database
+│   ├── __pycache__
+│   │   └── storage.cpython-313.pyc
+│   └── storage.py
+├── display
+│   ├── console_display.py
+│   └── __pycache__
+│       └── console_display.cpython-313.pyc
+├── docs
+│   ├── api-reference.md
+│   ├── arquitetura.md
+│   ├── configuracao.md
+│   ├── instalacao.md
+│   ├── modelo-cnn.md
+│   └── README.md
+├── estrutura.txt
+├── imagens
+│   └── mapa_poa
+│       ├── atencao.jpeg
+│       ├── mapa_poa-normal.jpeg
+│       └── mapa_poa-perigo.jpeg
+├── main.py
+├── main_web.py
+├── models
+│   ├── cnn_model.py
+│   └── __pycache__
+│       └── cnn_model.cpython-313.pyc
+├── README.md
+├── requirements.txt
+├── sistema.py
+├── tests
+├── utils
+│   ├── file_utils.py
+│   └── __pycache__
+│       └── file_utils.cpython-313.pyc
+└── web
+    ├── static
+    │   ├── css
+    │   │   └── dashboard.css
+    │   ├── images
+    │   │   ├── inference
+    │   │   │   ├── imagem_0001.jpg
+    │   │   │   ├── imagem_0002.jpg
+    │   │   │   ├── imagem_0003.jpg
+    │   │   │   ├── imagem_0004.jpg
+    │   │   │   ├── imagem_0005.jpg
+    │   │   │   ├── imagem_0006.jpg
+    │   │   │   ├── imagem_0007.jpg
+    │   │   │   ├── imagem_0008.jpg
+    │   │   │   ├── imagem_0009.jpg
+    │   │   │   ├── imagem_0010.jpg
+    │   │   │   ├── imagem_0011.jpg
+    │   │   │   ├── imagem_0012.jpg
+    │   │   │   ├── imagem_0013.jpg
+    │   │   │   ├── imagem_0014.jpg
+    │   │   │   ├── imagem_0015.jpg
+    │   │   │   ├── imagem_0016.jpg
+    │   │   │   ├── imagem_0017.jpg
+    │   │   │   ├── imagem_0018.jpg
+    │   │   │   ├── imagem_0019.jpg
+    │   │   │   ├── imagem_0020.jpg
+    │   │   │   ├── imagem_0021.jpg
+    │   │   │   ├── imagem_0022.jpg
+    │   │   │   ├── imagem_0023.jpg
+    │   │   │   ├── imagem_0024.jpg
+    │   │   │   ├── imagem_0025.jpg
+    │   │   │   ├── imagem_0026.jpg
+    │   │   │   ├── imagem_0027.jpg
+    │   │   │   ├── imagem_0028.jpg
+    │   │   │   ├── imagem_0029.jpg
+    │   │   │   ├── imagem_0030.jpg
+    │   │   │   ├── imagem_0031.jpg
+    │   │   │   ├── imagem_0032.jpg
+    │   │   │   ├── imagem_0033.jpg
+    │   │   │   ├── imagem_0034.jpg
+    │   │   │   ├── imagem_0035.jpg
+    │   │   │   ├── imagem_0036.jpg
+    │   │   │   ├── imagem_0037.jpg
+    │   │   │   ├── imagem_0038.jpg
+    │   │   │   ├── imagem_0039.jpg
+    │   │   │   ├── imagem_0040.jpg
+    │   │   │   ├── imagem_0041.jpg
+    │   │   │   ├── imagem_0042.jpg
+    │   │   │   ├── imagem_0043.jpg
+    │   │   │   ├── imagem_0044.jpg
+    │   │   │   ├── imagem_0045.jpg
+    │   │   │   ├── imagem_0046.jpg
+    │   │   │   ├── imagem_0047.jpg
+    │   │   │   ├── imagem_0048.jpg
+    │   │   │   ├── imagem_0049.jpg
+    │   │   │   ├── imagem_0050.jpg
+    │   │   │   ├── imagem_0051.jpg
+    │   │   │   ├── imagem_0052.jpg
+    │   │   │   ├── imagem_0053.jpg
+    │   │   │   ├── imagem_0054.jpg
+    │   │   │   ├── imagem_0055.jpg
+    │   │   │   ├── imagem_0056.jpg
+    │   │   │   ├── imagem_0057.jpg
+    │   │   │   ├── imagem_0058.jpg
+    │   │   │   ├── imagem_0059.jpg
+    │   │   │   ├── imagem_0060.jpg
+    │   │   │   ├── imagem_0061.jpg
+    │   │   │   ├── imagem_0062.jpg
+    │   │   │   ├── imagem_0063.jpg
+    │   │   │   ├── imagem_0064.jpg
+    │   │   │   ├── imagem_0065.jpg
+    │   │   │   ├── imagem_0066.jpg
+    │   │   │   ├── imagem_0067.jpg
+    │   │   │   ├── imagem_0068.jpg
+    │   │   │   ├── imagem_0069.jpg
+    │   │   │   ├── imagem_0070.jpg
+    │   │   │   ├── imagem_0071.jpg
+    │   │   │   ├── imagem_0072.jpg
+    │   │   │   ├── imagem_0073.jpg
+    │   │   │   ├── imagem_0074.jpg
+    │   │   │   ├── imagem_0075.jpg
+    │   │   │   ├── imagem_0076.jpg
+    │   │   │   ├── imagem_0077.jpg
+    │   │   │   ├── imagem_0078.jpg
+    │   │   │   ├── imagem_0079.jpg
+    │   │   │   ├── imagem_0080.jpg
+    │   │   │   ├── imagem_0081.jpg
+    │   │   │   ├── imagem_0082.jpg
+    │   │   │   ├── imagem_0083.jpg
+    │   │   │   ├── imagem_0084.jpg
+    │   │   │   ├── imagem_0085.jpg
+    │   │   │   ├── imagem_0086.jpg
+    │   │   │   ├── imagem_0087.jpg
+    │   │   │   ├── imagem_0088.jpg
+    │   │   │   ├── imagem_0089.jpg
+    │   │   │   ├── imagem_0090.jpg
+    │   │   │   ├── imagem_0091.jpg
+    │   │   │   ├── imagem_0092.jpg
+    │   │   │   ├── imagem_0093.jpg
+    │   │   │   ├── imagem_0094.jpg
+    │   │   │   ├── imagem_0095.jpg
+    │   │   │   ├── imagem_0096.jpg
+    │   │   │   ├── imagem_0097.jpg
+    │   │   │   ├── imagem_0098.jpg
+    │   │   │   ├── imagem_0099.jpg
+    │   │   │   ├── imagem_0100.jpg
+    │   │   │   ├── imagem_0101.jpg
+    │   │   │   ├── imagem_0102.jpg
+    │   │   │   ├── imagem_0103.jpg
+    │   │   │   ├── imagem_0104.jpg
+    │   │   │   ├── imagem_0105.jpg
+    │   │   │   ├── imagem_0106.jpg
+    │   │   │   ├── imagem_0107.jpg
+    │   │   │   ├── imagem_0108.jpg
+    │   │   │   ├── imagem_0109.jpg
+    │   │   │   ├── imagem_0110.jpg
+    │   │   │   ├── imagem_0111.jpg
+    │   │   │   ├── imagem_0112.jpg
+    │   │   │   ├── imagem_0113.jpg
+    │   │   │   ├── imagem_0114.jpg
+    │   │   │   ├── imagem_0115.jpg
+    │   │   │   ├── imagem_0116.jpg
+    │   │   │   ├── imagem_0117.jpg
+    │   │   │   ├── imagem_0118.jpg
+    │   │   │   ├── imagem_0119.jpg
+    │   │   │   ├── imagem_0120.jpg
+    │   │   │   ├── imagem_0121.jpg
+    │   │   │   ├── imagem_0122.jpg
+    │   │   │   ├── imagem_0123.jpg
+    │   │   │   ├── imagem_0124.jpg
+    │   │   │   ├── imagem_0125.jpg
+    │   │   │   ├── imagem_0126.jpg
+    │   │   │   ├── imagem_0127.jpg
+    │   │   │   ├── imagem_0128.jpg
+    │   │   │   ├── imagem_0129.jpg
+    │   │   │   ├── imagem_0130.jpg
+    │   │   │   ├── imagem_0131.jpg
+    │   │   │   ├── imagem_0132.jpg
+    │   │   │   ├── imagem_0133.jpg
+    │   │   │   ├── imagem_0134.jpg
+    │   │   │   ├── imagem_0135.jpg
+    │   │   │   ├── imagem_0136.jpg
+    │   │   │   ├── imagem_0137.jpg
+    │   │   │   ├── imagem_0138.jpg
+    │   │   │   ├── imagem_0139.jpg
+    │   │   │   ├── imagem_0140.jpg
+    │   │   │   ├── imagem_0141.jpg
+    │   │   │   ├── imagem_0142.jpg
+    │   │   │   ├── imagem_0143.jpg
+    │   │   │   ├── imagem_0144.jpg
+    │   │   │   ├── imagem_0145.jpg
+    │   │   │   ├── imagem_0146.jpg
+    │   │   │   ├── imagem_0147.jpg
+    │   │   │   ├── imagem_0148.jpg
+    │   │   │   ├── imagem_0149.jpg
+    │   │   │   ├── imagem_0150.jpg
+    │   │   │   ├── imagem_0151.jpg
+    │   │   │   ├── imagem_0152.jpg
+    │   │   │   ├── imagem_0153.jpg
+    │   │   │   ├── imagem_0154.jpg
+    │   │   │   ├── imagem_0155.jpg
+    │   │   │   ├── imagem_0156.jpg
+    │   │   │   ├── imagem_0157.jpg
+    │   │   │   ├── imagem_0158.jpg
+    │   │   │   ├── imagem_0159.jpg
+    │   │   │   ├── imagem_0160.jpg
+    │   │   │   ├── imagem_0161.jpg
+    │   │   │   ├── imagem_0162.jpg
+    │   │   │   ├── imagem_0163.jpg
+    │   │   │   ├── imagem_0164.jpg
+    │   │   │   ├── imagem_0165.jpg
+    │   │   │   ├── imagem_0166.jpg
+    │   │   │   ├── imagem_0167.jpg
+    │   │   │   ├── imagem_0168.jpg
+    │   │   │   ├── imagem_0169.jpg
+    │   │   │   ├── imagem_0170.jpg
+    │   │   │   ├── imagem_0171.jpg
+    │   │   │   ├── imagem_0172.jpg
+    │   │   │   ├── imagem_0173.jpg
+    │   │   │   ├── imagem_0174.jpg
+    │   │   │   ├── imagem_0175.jpg
+    │   │   │   ├── imagem_0176.jpg
+    │   │   │   ├── imagem_0177.jpg
+    │   │   │   ├── imagem_0178.jpg
+    │   │   │   ├── imagem_0179.jpg
+    │   │   │   ├── imagem_0180.jpg
+    │   │   │   ├── imagem_0181.jpg
+    │   │   │   ├── imagem_0182.jpg
+    │   │   │   ├── imagem_0183.jpg
+    │   │   │   ├── imagem_0184.jpg
+    │   │   │   ├── imagem_0185.jpg
+    │   │   │   ├── imagem_0186.jpg
+    │   │   │   ├── imagem_0187.jpg
+    │   │   │   ├── imagem_0188.jpg
+    │   │   │   ├── imagem_0189.jpg
+    │   │   │   ├── imagem_0190.jpg
+    │   │   │   ├── imagem_0191.jpg
+    │   │   │   ├── imagem_0192.jpg
+    │   │   │   ├── imagem_0193.jpg
+    │   │   │   ├── imagem_0194.jpg
+    │   │   │   ├── imagem_0195.jpg
+    │   │   │   ├── imagem_0196.jpg
+    │   │   │   ├── imagem_0197.jpg
+    │   │   │   ├── imagem_0198.jpg
+    │   │   │   ├── imagem_0199.jpg
+    │   │   │   ├── imagem_0200.jpg
+    │   │   │   ├── imagem_0201.jpg
+    │   │   │   ├── imagem_0202.jpg
+    │   │   │   ├── imagem_0203.jpg
+    │   │   │   ├── imagem_0204.jpg
+    │   │   │   ├── imagem_0205.jpg
+    │   │   │   ├── imagem_0206.jpg
+    │   │   │   ├── imagem_0207.jpg
+    │   │   │   ├── imagem_0208.jpg
+    │   │   │   ├── imagem_0209.jpg
+    │   │   │   ├── imagem_0210.jpg
+    │   │   │   ├── imagem_0211.jpg
+    │   │   │   ├── imagem_0212.jpg
+    │   │   │   ├── imagem_0213.jpg
+    │   │   │   ├── imagem_0214.jpg
+    │   │   │   ├── imagem_0215.jpg
+    │   │   │   ├── imagem_0216.jpg
+    │   │   │   ├── imagem_0217.jpg
+    │   │   │   ├── imagem_0218.jpg
+    │   │   │   ├── imagem_0219.jpg
+    │   │   │   ├── imagem_0220.jpg
+    │   │   │   ├── imagem_0221.jpg
+    │   │   │   ├── imagem_0222.jpg
+    │   │   │   ├── imagem_0223.jpg
+    │   │   │   ├── imagem_0224.jpg
+    │   │   │   ├── imagem_0225.jpg
+    │   │   │   ├── imagem_0226.jpg
+    │   │   │   ├── imagem_0227.jpg
+    │   │   │   ├── imagem_0228.jpg
+    │   │   │   ├── imagem_0229.jpg
+    │   │   │   ├── imagem_0230.jpg
+    │   │   │   ├── imagem_0231.jpg
+    │   │   │   ├── imagem_0232.jpg
+    │   │   │   ├── imagem_0233.jpg
+    │   │   │   ├── imagem_0234.jpg
+    │   │   │   ├── imagem_0235.jpg
+    │   │   │   ├── imagem_0236.jpg
+    │   │   │   ├── imagem_0237.jpg
+    │   │   │   ├── imagem_0238.jpg
+    │   │   │   ├── imagem_0239.jpg
+    │   │   │   ├── imagem_0240.jpg
+    │   │   │   ├── imagem_0241.jpg
+    │   │   │   ├── imagem_0242.jpg
+    │   │   │   ├── imagem_0243.jpeg
+    │   │   │   ├── imagem_0244.jpeg
+    │   │   │   ├── imagem_0245.jpeg
+    │   │   │   ├── imagem_0246.jpeg
+    │   │   │   ├── imagem_0247.jpeg
+    │   │   │   ├── imagem_0248.jpeg
+    │   │   │   ├── imagem_0249.jpeg
+    │   │   │   ├── imagem_0250.jpeg
+    │   │   │   ├── imagem_0251.jpeg
+    │   │   │   ├── imagem_0252.jpeg
+    │   │   │   ├── imagem_0253.jpeg
+    │   │   │   ├── imagem_0254.jpeg
+    │   │   │   ├── imagem_0255.jpeg
+    │   │   │   ├── imagem_0256.jpeg
+    │   │   │   ├── imagem_0257.jpeg
+    │   │   │   ├── imagem_0258.jpeg
+    │   │   │   ├── imagem_0259.jpeg
+    │   │   │   ├── imagem_0260.jpeg
+    │   │   │   ├── imagem_0261.jpeg
+    │   │   │   ├── imagem_0262.jpeg
+    │   │   │   ├── imagem_0263.jpeg
+    │   │   │   ├── imagem_0264.jpeg
+    │   │   │   ├── imagem_0265.jpeg
+    │   │   │   ├── imagem_0266.jpeg
+    │   │   │   ├── imagem_0267.jpeg
+    │   │   │   ├── imagem_0268.jpeg
+    │   │   │   ├── imagem_0269.jpeg
+    │   │   │   ├── imagem_0270.jpeg
+    │   │   │   ├── imagem_0271.jpeg
+    │   │   │   ├── imagem_0272.jpeg
+    │   │   │   ├── imagem_0273.jpeg
+    │   │   │   ├── imagem_0274.jpeg
+    │   │   │   ├── imagem_0275.jpeg
+    │   │   │   ├── imagem_0276.jpeg
+    │   │   │   ├── imagem_0277.jpeg
+    │   │   │   ├── imagem_0278.jpeg
+    │   │   │   ├── imagem_0279.jpeg
+    │   │   │   ├── imagem_0280.jpeg
+    │   │   │   ├── imagem_0281.jpeg
+    │   │   │   ├── imagem_0282.jpeg
+    │   │   │   ├── imagem_0283.jpeg
+    │   │   │   ├── imagem_0284.jpeg
+    │   │   │   ├── imagem_0285.jpeg
+    │   │   │   ├── imagem_0286.jpeg
+    │   │   │   ├── imagem_0287.jpeg
+    │   │   │   ├── imagem_0288.jpeg
+    │   │   │   ├── imagem_0289.jpeg
+    │   │   │   ├── imagem_0290.jpeg
+    │   │   │   ├── imagem_0291.jpeg
+    │   │   │   ├── imagem_0292.jpeg
+    │   │   │   ├── imagem_0293.jpeg
+    │   │   │   ├── imagem_0294.jpeg
+    │   │   │   ├── imagem_0295.jpeg
+    │   │   │   ├── imagem_0296.jpeg
+    │   │   │   ├── imagem_0297.jpeg
+    │   │   │   ├── imagem_0298.jpeg
+    │   │   │   ├── imagem_0299.jpeg
+    │   │   │   ├── imagem_0300.jpeg
+    │   │   │   ├── imagem_0301.jpeg
+    │   │   │   ├── imagem_0302.jpeg
+    │   │   │   ├── imagem_0303.jpeg
+    │   │   │   ├── imagem_0304.jpeg
+    │   │   │   ├── imagem_0305.jpeg
+    │   │   │   ├── imagem_0306.jpeg
+    │   │   │   ├── imagem_0307.jpeg
+    │   │   │   ├── imagem_0308.jpeg
+    │   │   │   ├── imagem_0309.jpeg
+    │   │   │   ├── imagem_0310.jpeg
+    │   │   │   ├── imagem_0311.jpeg
+    │   │   │   ├── imagem_0312.jpeg
+    │   │   │   ├── imagem_0313.jpeg
+    │   │   │   ├── imagem_0314.jpeg
+    │   │   │   ├── imagem_0315.jpeg
+    │   │   │   ├── imagem_0316.jpeg
+    │   │   │   ├── imagem_0317.jpeg
+    │   │   │   ├── imagem_0318.jpeg
+    │   │   │   ├── imagem_0319.jpeg
+    │   │   │   └── imagem_0320.jpeg
+    │   │   ├── maps
+    │   │   │   ├── atencao.jpeg
+    │   │   │   ├── normal.jpeg
+    │   │   │   └── perigo.jpeg
+    │   │   └── placeholder.jpeg
+    │   └── js
+    │       └── dashboard.js
+    └── templates
+        └── dashboard.html
+
+31 directories, 686 files

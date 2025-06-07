@@ -7,14 +7,14 @@ from core.system import MonitoringSystem  # Importa a classe original
 class WebMonitoringSystem(MonitoringSystem):
     """Sistema de monitoramento integrado com dashboard web"""
     
-    def __init__(self, api_url='http://localhost:5000'):
+    def __init__(self, api_url='http://localhost:5000', clear_history=False):
         super().__init__()
         self.api_url = api_url
         
         # Carrega componentes web opcionalmente
         try:
             from database.storage import HistoryManager
-            self.history_manager = HistoryManager()
+            self.history_manager = HistoryManager(clear_on_init=clear_history)
             print("✅ Persistência de dados habilitada")
         except ImportError:
             print("⚠️  Rodando sem persistência de dados")

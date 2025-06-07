@@ -9,7 +9,7 @@ from api.app import app, socketio, broadcast_update
 
 def run_monitoring_system():
     """Executa sistema de monitoramento em thread separada"""
-    system = WebMonitoringSystem()
+    system = WebMonitoringSystem(clear_history=True)
     display = ConsoleDisplay()
     
     display.show_startup()

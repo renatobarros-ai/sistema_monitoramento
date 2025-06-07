@@ -9,9 +9,12 @@ from typing import List, Dict, Optional
 class HistoryManager:
     """Gerenciador de histórico do sistema"""
     
-    def __init__(self, storage_file='data/history.json'):
+    def __init__(self, storage_file='data/history.json', clear_on_init=False):
         self.storage_file = storage_file
         self.ensure_storage_exists()
+        if clear_on_init:
+            with open(self.storage_file, 'w') as f:
+                json.dump([], f)
     
     def ensure_storage_exists(self):
         """Garante que o arquivo de storage existe"""
