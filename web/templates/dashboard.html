@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Monitoramento de Alagamentos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>🌧️ Monitoramento de Alagamentos</h1>
+            <div class="status-indicator">
+                <span id="connectionStatus">🔴 Desconectado</span>
+                <span id="lastUpdate">Última atualização: --:--</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Dashboard -->
+    <main class="dashboard">
+        <div class="container">
+            
+            <!-- Grid Principal -->
+            <div class="dashboard-grid">
+                
+                <!-- Mapa e Status -->
+                <div class="card map-card">
+                    <h2>Situação Atual</h2>
+                    <div class="map-container">
+                        <img id="mapImage" src="{{ url_for('static', filename='images/maps/normal.jpeg') }}" 
+                             alt="Mapa da situação" class="map-image">
+                        <div class="map-overlay">
+                            <span id="mapStatus" class="status-badge status-normal">Normal</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Painel Informativo -->
+                <div class="card info-card">
+                    <h2>Informações Atuais</h2>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">📅 Data</span>
+                            <span id="currentDate" class="info-value">--/--/----</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">📊 Classificação</span>
+                            <span id="currentClassification" class="info-value">---</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">👥 Pessoas em Risco</span>
+                            <span id="currentPeopleRisk" class="info-value">---</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">🌊 Alagamento</span>
+                            <span id="currentFlooding" class="info-value">---</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">☔ Nível de Chuva</span>
+                            <span id="currentRainLevel" class="info-value">--- mm</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">🌅 Dia</span>
+                            <span id="currentDay" class="info-value">---</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Imagem da CNN -->
+                <div class="card image-card">
+                    <h2>Imagem Analisada</h2>
+                    <div class="image-container">
+                        <img id="inferenceImage" src="{{ url_for('static', filename='images/placeholder.jpeg') }}" 
+                             alt="Imagem analisada" class="inference-image">
+                        <p id="imageName" class="image-name">nenhuma</p>
+                    </div>
+                </div>
+
+                <!-- Gráfico de Histórico -->
+                <div class="card chart-card">
+                    <h2>Histórico de Níveis de Chuva</h2>
+                    <canvas id="rainChart"></canvas>
+                </div>
+
+                <!-- Tabela de Histórico -->
+                <div class="card table-card">
+                    <h2>Últimos Registros</h2>
+                    <div class="table-container">
+                        <table id="historyTable">
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Nível (mm)</th>
+                                    <th>Alagamento</th>
+                                    <th>Pessoas em Risco</th>
+                                    <th>Classificação</th>
+                                    <th>Imagem</th>
+                                </tr>
+                            </thead>
+                            <tbody id="historyTableBody">
+                                <!-- Dados carregados via JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Sistema de Monitoramento de Alagamentos - Desenvolvido com ❤️ para salvar vidas</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

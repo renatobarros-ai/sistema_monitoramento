@@ -1,0 +1,274 @@
+/* Paleta de Cores */
+:root {
+    --azul-escuro: #0D2340;
+    --azul-medio: #0066CC;
+    --verde-claro: #A3C533;
+    --verde-vivo: #78BF43;
+    --branco: #FFFFFF;
+    --cinza-claro: #F5F5F5;
+    
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --border-radius: 8px;
+    --transition: all 0.3s ease;
+}
+
+/* Reset e Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--cinza-claro);
+    color: var(--azul-escuro);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.header {
+    background: var(--azul-escuro);
+    color: var(--branco);
+    padding: 1rem 0;
+    box-shadow: var(--shadow);
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.header h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.status-indicator {
+    display: flex;
+    gap: 2rem;
+    font-size: 0.9rem;
+}
+
+#connectionStatus {
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--border-radius);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Dashboard Grid */
+.dashboard {
+    padding: 2rem 0;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1.5rem;
+    grid-template-areas:
+        "map info"
+        "image chart"
+        "table table";
+}
+
+.map-card { grid-area: map; }
+.info-card { grid-area: info; }
+.image-card { grid-area: image; }
+.chart-card { grid-area: chart; }
+.table-card { grid-area: table; }
+
+/* Cards */
+.card {
+    background: var(--branco);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.card h2 {
+    color: var(--azul-escuro);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    border-bottom: 2px solid var(--verde-claro);
+    padding-bottom: 0.5rem;
+}
+
+/* Mapa */
+.map-container {
+    position: relative;
+    text-align: center;
+}
+
+.map-image {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: var(--border-radius);
+    border: 3px solid var(--verde-claro);
+}
+
+.map-overlay {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.status-badge {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.status-normal { background: var(--verde-vivo); color: var(--branco); }
+.status-atencao { background: #FFA500; color: var(--branco); }
+.status-perigo { background: #FF4444; color: var(--branco); }
+
+/* Painel Informativo */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background: var(--cinza-claro);
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--azul-medio);
+}
+
+.info-label {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.info-value {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--azul-escuro);
+}
+
+/* Imagem da CNN */
+.image-container {
+    text-align: center;
+}
+
+.inference-image {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: var(--border-radius);
+    border: 2px solid var(--verde-claro);
+    margin-bottom: 0.5rem;
+}
+
+.image-name {
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+}
+
+/* Gráfico */
+.chart-card canvas {
+    max-height: 300px;
+}
+
+/* Tabela */
+.table-container {
+    overflow-x: auto;
+}
+
+#historyTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+#historyTable th,
+#historyTable td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+#historyTable th {
+    background: var(--azul-escuro);
+    color: var(--branco);
+    font-weight: 600;
+}
+
+#historyTable tr:hover {
+    background: var(--cinza-claro);
+}
+
+#historyTable tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+/* Footer */
+.footer {
+    background: var(--azul-escuro);
+    color: var(--branco);
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "map"
+            "info"
+            "image"
+            "chart"
+            "table";
+    }
+    
+    .header .container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .status-indicator {
+        gap: 1rem;
+    }
+    
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Animações */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.loading {
+    animation: pulse 1.5s infinite;
+}
+
+/* Estados de conexão */
+.connected { color: var(--verde-vivo) !important; }
+.disconnected { color: #FF4444 !important; }
