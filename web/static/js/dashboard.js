@@ -101,7 +101,7 @@ class Dashboard {
             item.classList.remove('item-normal', 'item-atencao', 'item-perigo');
         });
         
-        // ✨ NOVA FUNCIONALIDADE: Aplica classe global no body para afetar contornos
+        // ✨ Aplica classe global no body para afetar contornos
         const body = document.body;
         
         // Remove classes globais anteriores
@@ -272,7 +272,24 @@ class Dashboard {
                 historyData.data.reverse().forEach(record => {
                     const row = document.createElement('tr');
                     
-                    // Formata classificação com cor
+                    // ✨ NOVA FUNCIONALIDADE: Aplica classe de fundo baseada na classificação
+                    let rowClass = 'row-normal'; // Padrão
+                    
+                    switch (record.classification?.toLowerCase()) {
+                        case 'perigo':
+                            rowClass = 'row-perigo';
+                            break;
+                        case 'atenção':
+                            rowClass = 'row-atencao';
+                            break;
+                        default:
+                            rowClass = 'row-normal';
+                    }
+                    
+                    // Aplica a classe de fundo na linha
+                    row.className = rowClass;
+                    
+                    // Formata classificação com cor (mantém como estava)
                     let classificationClass = '';
                     switch (record.classification?.toLowerCase()) {
                         case 'perigo': classificationClass = 'style="color: #FF4444; font-weight: bold;"'; break;

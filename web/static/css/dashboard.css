@@ -244,6 +244,32 @@ body {
     background: #f9f9f9;
 }
 
+/* Fundos translúcidos para linhas da tabela baseados na classificação */
+#historyTable tr.row-normal {
+    background: #FAFAFA !important; /* Apenas um toque mais escuro que o branco */
+}
+
+#historyTable tr.row-atencao {
+    background: rgba(255, 165, 0, 0.08) !important;
+}
+
+#historyTable tr.row-perigo {
+    background: rgba(255, 68, 68, 0.08) !important;
+}
+
+/* Manter o hover funcionando */
+#historyTable tr.row-normal:hover {
+    background: var(--cinza-claro) !important; /* Usa a variável cinza claro no hover */
+}
+
+#historyTable tr.row-atencao:hover {
+    background: rgba(255, 165, 0, 0.15) !important;
+}
+
+#historyTable tr.row-perigo:hover {
+    background: rgba(255, 68, 68, 0.15) !important;
+}
+
 /* Footer */
 .footer {
     background: var(--azul-escuro);
