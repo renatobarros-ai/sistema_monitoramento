@@ -15,7 +15,6 @@
             <h1>🌧️ Monitoramento de Alagamentos</h1>
             <div class="status-indicator">
                 <span id="connectionStatus">🔴 Desconectado</span>
-                <span id="lastUpdate">Última atualização: --:--</span>
             </div>
         </div>
     </header>
@@ -44,8 +43,8 @@
                     <h2>Informações Atuais</h2>
                     <div class="info-grid">
                         <div class="info-item">
-                            <span class="info-label">📅 Data</span>
-                            <span id="currentDate" class="info-value">--/--/----</span>
+                            <span class="info-label">🌅 Dia</span>
+                            <span id="currentDay" class="info-value">---</span>
                         </div>
                         <div class="info-item">
                             <span class="info-label">📊 Classificação</span>
@@ -63,10 +62,6 @@
                             <span class="info-label">☔ Nível de Chuva</span>
                             <span id="currentRainLevel" class="info-value">--- mm</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">🌅 Dia</span>
-                            <span id="currentDay" class="info-value">---</span>
-                        </div>
                     </div>
                 </div>
 
@@ -82,7 +77,7 @@
 
                 <!-- Gráfico de Histórico -->
                 <div class="card chart-card">
-                    <h2>Histórico de Níveis de Chuva</h2>
+                    <h2>Histórico dos Últimos Níveis de Chuva</h2>
                     <canvas id="rainChart"></canvas>
                 </div>
 
@@ -93,7 +88,7 @@
                         <table id="historyTable">
                             <thead>
                                 <tr>
-                                    <th>Data</th>
+                                    <th>Dia</th>
                                     <th>Nível (mm)</th>
                                     <th>Alagamento</th>
                                     <th>Pessoas em Risco</th>

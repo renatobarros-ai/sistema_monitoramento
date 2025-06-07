@@ -57,12 +57,10 @@ class Dashboard {
     
     updateConnectionStatus() {
         const statusElement = document.getElementById('connectionStatus');
-        const lastUpdateElement = document.getElementById('lastUpdate');
         
         if (this.isConnected) {
             statusElement.textContent = '🟢 Conectado';
             statusElement.className = 'connected';
-            lastUpdateElement.textContent = `Última atualização: ${new Date().toLocaleTimeString()}`;
         } else {
             statusElement.textContent = '🔴 Desconectado';
             statusElement.className = 'disconnected';
@@ -89,12 +87,11 @@ class Dashboard {
     
     updateCurrentStatus(data) {
         // Atualiza painel informativo
-        document.getElementById('currentDate').textContent = data.date || '--/--/----';
+        document.getElementById('currentDay').textContent = data.day || '---';
         document.getElementById('currentClassification').textContent = data.classification || '---';
         document.getElementById('currentPeopleRisk').textContent = data.people_at_risk || '---';
         document.getElementById('currentFlooding').textContent = data.flooding || '---';
         document.getElementById('currentRainLevel').textContent = `${data.rain_level || '---'} mm`;
-        document.getElementById('currentDay').textContent = data.day || '---';
         
         // Atualiza mapa
         this.updateMap(data.classification);
@@ -208,7 +205,7 @@ class Dashboard {
             const historyData = await response.json();
             
             if (historyData.success && historyData.data) {
-                const data = historyData.data;
+                const data = historyData.data.slice(-15);
                 const labels = data.map(item => `Dia ${item.day}`);
                 const rainLevels = data.map(item => item.rain_level);
                 const floodingLimit = new Array(data.length).fill(50);
@@ -244,7 +241,7 @@ class Dashboard {
                     }
                     
                     row.innerHTML = `
-                        <td>${record.date || '--'}</td>
+                        <td>${record.day || '--'}</td>
                         <td>${record.rain_level || '--'}</td>
                         <td>${record.flooding || '--'}</td>
                         <td>${record.people_at_risk || '--'}</td>
