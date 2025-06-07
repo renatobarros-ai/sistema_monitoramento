@@ -24,8 +24,19 @@ Detectar automaticamente pessoas em risco em áreas alagadas através da anális
 - ✅ **Análise de imagens com CNN treinada** (91.2% de acurácia)
 - ✅ **Classificação inteligente de risco**
 - ✅ **Interface de console em tempo real**
+- ✅ **Dashboard web** com atualizações via WebSocket
+- ✅ **Sistema de persistência** de dados em JSON
+- ✅ **API REST** para integração externa
 - ✅ **Sistema de fallback** (simulação quando modelo não disponível)
 - ✅ **Arquitetura modular e extensível**
+
+## 📚 Documentação Completa
+
+- **[🏗️ Arquitetura](docs/arquitetura.md)** - Estrutura e componentes do sistema
+- **[🧠 Modelo CNN](docs/modelo-cnn.md)** - Detalhes da rede neural e treinamento
+- **[🌐 API Reference](docs/api-reference.md)** - Documentação completa da API
+- **[⚙️ Configuração](docs/configuracao.md)** - Guia de configuração e personalização
+- **[📖 Guia de Instalação](docs/instalacao.md)** - Instalação detalhada e troubleshooting
 
 ## 🧠 Modelo de IA
 
@@ -75,10 +86,16 @@ mkdir -p data/cnn/imagens
 
 ## 🎮 Como Usar
 
-### Execução Básica
+### Modo Console
 ```bash
 python main.py
 ```
+
+### Modo Web (Recomendado)
+```bash
+python main_web.py
+```
+Acesse: `http://localhost:5000`
 
 ### Exemplo de Saída
 ```
@@ -104,45 +121,37 @@ python main.py
 
 ```
 sistema_monitoramento/
-│
-├── 📄 main.py                    # Arquivo principal
-├── 📄 requirements.txt           # Dependências
-├── 📄 README.md                 # Este arquivo
-│
-├── 📁 config/                   # Configurações
-│   ├── __init__.py
-│   └── settings.py              # Constantes e parâmetros
-│
-├── 📁 models/                   # Modelos de IA
-│   ├── __init__.py
-│   └── cnn_model.py             # Arquitetura CNN
-│
+├── 📄 main.py                    # Entrada console
+├── 📄 main_web.py               # Entrada web
+├── 📄 sistema.py                # Versão legada
+├── 📄 requirements.txt          # Dependências
 ├── 📁 core/                     # Lógica principal
-│   ├── __init__.py
-│   ├── sensor.py                # Sensor de chuva
-│   ├── image_analyzer.py        # Análise de imagens
-│   ├── classifier.py            # Classificador de emergência
-│   └── system.py                # Sistema principal
-│
-├── 📁 utils/                    # Utilitários
-│   ├── __init__.py
-│   ├── file_utils.py            # Manipulação de arquivos
-│   └── image_utils.py           # Processamento de imagens
-│
-├── 📁 display/                  # Interface
-│   ├── __init__.py
-│   └── console_display.py       # Display do console
-│
+│   ├── system.py               # Sistema principal
+│   ├── web_system.py           # Extensão web
+│   ├── sensor.py               # Sensor de chuva
+│   ├── image_analyzer.py       # Análise CNN
+│   └── classifier.py           # Classificador emergência
+├── 📁 models/                   # Modelos de IA
+│   └── cnn_model.py            # Arquitetura CNN
+├── 📁 api/                      # API Web
+│   └── app.py                  # Servidor Flask
+├── 📁 web/                      # Interface Web
+│   ├── templates/              # Templates HTML
+│   └── static/                 # CSS, JS, imagens
+├── 📁 database/                 # Persistência
+│   └── storage.py              # Gerenciador histórico
 ├── 📁 data/                     # Dados
-│   └── cnn/
-│       ├── modelo/              # Modelos treinados (.pth)
-│       └── imagens/             # Imagens para inferência
-│
+│   ├── cnn/modelo/             # Modelos treinados
+│   ├── cnn/imagens/            # Dataset inferência
+│   └── history.json            # Histórico sistema
+├── 📁 config/                   # Configurações
+│   └── settings.py             # Constantes
+├── 📁 utils/                    # Utilitários
+│   └── file_utils.py           # Manipulação arquivos
+├── 📁 display/                  # Interface
+│   └── console_display.py      # Display console
+├── 📁 docs/                     # Documentação
 └── 📁 tests/                    # Testes unitários
-    ├── __init__.py
-    ├── test_sensor.py
-    ├── test_classifier.py
-    └── test_image_analyzer.py
 ```
 
 ## ⚙️ Configuração
@@ -276,17 +285,28 @@ def test_rain_sensor():
 - ⚠️ **Resolução limitada**: 64x64 pode perder detalhes importantes
 - ⚠️ **Simulação de sensor**: Não integrado com sensores reais
 
-## 🔮 Roadmap
+## 🌐 Dashboard Web
 
-### Versão 2.0
-- [ ] 🌐 **Interface Web** com dashboard em tempo real
+### Funcionalidades
+- **Monitoramento em tempo real** via WebSockets
+- **Gráficos interativos** de histórico de chuva
+- **Mapas dinâmicos** que mudam conforme classificação
+- **Tabela de registros** com últimas detecções
+- **Visualização de imagens** analisadas pela CNN
+
+### Endpoints API
+- `GET /` - Dashboard principal
+- `GET /api/current-status` - Status atual do sistema
+- `GET /api/history` - Histórico completo
+- `GET /api/recent-records` - Últimos 15 registros
+- `GET /images/inference/<filename>` - Imagens analisadas
+
+## 🔮 Roadmap Futuro
+
+### Próximas Versões
 - [ ] 📡 **Integração com APIs meteorológicas** reais
 - [ ] 📧 **Sistema de alertas** (email, SMS, WhatsApp)
-- [ ] 🗄️ **Banco de dados** para histórico
-- [ ] 🔗 **API REST** para integração externa
-
-### Versão 3.0
-- [ ] 🤖 **Transfer Learning** com modelos pré-treinados
+- [ ] 🗄️ **Banco de dados** relacional
 - [ ] 📱 **App móvel** para equipes de campo
 - [ ] 🛰️ **Integração com imagens de satélite**
 - [ ] 🧠 **IA explicável** (visualização de atenção)
